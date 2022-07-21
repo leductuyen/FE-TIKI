@@ -9,10 +9,10 @@ Product.propTypes = {
 function Product({ product }) {
     const history = useHistory();
     const handleDetailPageClick = () => {
-        history.push(`product/${product.ProductId}`);
-        console.log(product);
+        history.push(`detail/${product.ProductId}`);
     };
     const ImageUrl = product.ImageURL;
+
     return (
         <div className={Styles.Home} onClick={handleDetailPageClick}>
             <div className={Styles.Content}>
@@ -21,7 +21,7 @@ function Product({ product }) {
                         <div className={Styles.Thumbnail}>
                             <img src={ImageUrl} alt="" height={230} width={250} />
                         </div>
-                        <div className={Styles.Info}>{product.name}</div>
+                        <div className={Styles.Info}>{product.Name}</div>
                         <div className={Styles.Price}>
                             {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(
                                 product.Price,

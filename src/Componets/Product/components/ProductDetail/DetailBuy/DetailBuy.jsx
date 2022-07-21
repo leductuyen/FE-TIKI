@@ -1,9 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Styles from './DetailBuy.module.scss';
 import AddToCart from '../AddToCart';
 import DeliveryAddress from './DeliveryAddress';
-DetailBuy.propTypes = {};
 
 function DetailBuy(props) {
     return (
@@ -18,11 +16,15 @@ function DetailBuy(props) {
             <div className={Styles.DeliveryZone}>
                 <div className={Styles.DataviewId}>
                     <div className={Styles.Address}>
-                        <span>Giao đến</span>
+                        <div className={Styles.StylesSpan}>
+                            <span>Giao đến</span>
+                        </div>
                         <span>
                             <DeliveryAddress />
                         </span>
-                        <span className={Styles.AddressChange}>Đổi địa chỉ</span>
+                        <div className={Styles.StylesSpan}>
+                            <span className={Styles.AddressChange}>Đổi địa chỉ</span>
+                        </div>
                     </div>
                 </div>
                 <div className={Styles.DeliveryZoneInner}>
