@@ -14,22 +14,14 @@ function Product({ product }) {
     const ImageUrl = product.ImageURL;
 
     return (
-        <div className={Styles.Home} onClick={handleDetailPageClick}>
-            <div className={Styles.Content}>
-                <span className={Styles.Span}>
-                    <div>
-                        <div className={Styles.Thumbnail}>
-                            <img src={ImageUrl} alt="" height={230} width={250} />
-                        </div>
-                        <div className={Styles.Info}>{product.Name}</div>
-                        <div className={Styles.Price}>
-                            {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(
-                                product.Price,
-                            )}
-                            {product.Quantity > 0 ? `-${product.Quantity}%` : ''}
-                        </div>
-                    </div>
-                </span>
+        <div className={Styles.Click} onClick={handleDetailPageClick}>
+            <div className={Styles.Thumbnail}>
+                <img src={ImageUrl} alt="" width="250px" height="250px" />
+            </div>
+            <div className={Styles.Info}>{product.Name}</div>
+            <div className={Styles.Price}>
+                {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.Price)}
+                {product.Quantity > 0 ? `-${product.Quantity}%` : ''}
             </div>
         </div>
     );

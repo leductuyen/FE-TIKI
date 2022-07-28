@@ -14,18 +14,18 @@ const productApi = {
             // },
         };
     },
+    async getLazy(_page, _limit) {
+        const result = await axiosClient.get(`/Product/get/${_page}/${_limit}`);
+        return {
+            data: result?.products || [],
+        };
+    },
+    async getBySearch(params) {
+        const result = await axiosClient.post('/Product/search', params);
 
-    add(data) {
-        const url = '/products';
-        return axiosClient.post(url, data);
-    },
-    update(data) {
-        const url = `/products/${data.id}`;
-        return axiosClient.patch(url, data);
-    },
-    remove(id) {
-        const url = `/products/${id}`;
-        return axiosClient.delete(url);
+        return {
+            data: result?.products || [],
+        };
     },
 };
 export default productApi;

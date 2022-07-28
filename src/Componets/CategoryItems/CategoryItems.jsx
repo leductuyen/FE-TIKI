@@ -7,7 +7,6 @@ import Styles from './CategoryItems.module.scss';
 
 function CategoryItems(props) {
     const [itemsCategory, setItemsCategory] = useState([]);
-    console.log('category', itemsCategory);
     useEffect(() => {
         (async () => {
             try {
@@ -25,7 +24,7 @@ function CategoryItems(props) {
             <div className={Styles.Container}>
                 {itemsCategory.categories?.map((items, index) => (
                     <div className={Styles.Slider}>
-                        <li key={index}>{items?.Name}</li>
+                        <li key={items.CategoryId}>{items?.Name}</li>
                     </div>
                 ))}
             </div>

@@ -1,10 +1,23 @@
-import React from 'react';
-import Styles from './Header.module.scss';
+import React, { useContext, useState } from 'react';
+import { useRef } from 'react';
+import { Context } from '../../Context/Context';
 import Logo from '../../Image/logo.png';
 import Search from '../../Image/search.png';
 import DialogLogin from './Dialog';
+import Styles from './Header.module.scss';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 function Header(props) {
+    const inputRef = useRef();
+    const { setSearch, searchString, setSearchString } = useContext(Context);
+    const handleOnChange = (e) => {
+        setSearchString(e.target.value);
+    };
+    const handleSearchClick = () => {
+        setSearch(searchString);
+        setSearchString('');
+        inputRef.current.focus();
+    };
     return (
         <div className={Styles.Main}>
             <div className={Styles.Wrapper}>
@@ -21,8 +34,20 @@ function Header(props) {
                         </div>
                         <div className={Styles.FormSearch}>
                             <div className={Styles.Search}>
-                                <input className={Styles.Input} type="text" placeholder="Tìm kiếm sản phẩm"></input>
-                                <button className={Styles.Button}>
+                                <input
+                                    ref={inputRef}
+                                    className={Styles.Input}
+                                    type="text"
+                                    placeholder="Tìm kiếm sản phẩm"
+                                    value={searchString}
+                                    onChange={handleOnChange}
+                                    onKeyDown={(e) => {
+                                        if (e.code === 'Enter') {
+                                            setSearch(searchString);
+                                        }
+                                    }}
+                                />
+                                <button className={Styles.Button} onClick={handleSearchClick}>
                                     <img src={Search} alt="serach" />
                                     Tìm kiếm
                                 </button>
@@ -35,10 +60,13 @@ function Header(props) {
                             src="https://salt.tikicdn.com/ts/upload/67/de/1e/90e54b0a7a59948dd910ba50954c702e.png"
                             alt=""
                         />
-
                         <span className={Styles.UserStyles}>
                             <DialogLogin />
                         </span>
+                        <span className={Styles.UserStyles}>
+                            <ShoppingCartIcon />
+                        </span>
+                        <span className={Styles.UserStyles}>Giỏ hàng</span>
                     </div>
                 </div>
             </div>

@@ -6,17 +6,17 @@ ProductSkeletonList.prototype = {
     length: PropTypes.number,
 };
 ProductSkeletonList.defaultProps = {
-    length: 28,
+    length: 30,
 };
 
 function ProductSkeletonList({ length }) {
     return (
-        <Box sx={{ my: 4 }}>
+        <Box sx={{ my: 3 }}>
             <Grid container>
                 {Array.from(new Array(length)).map((x, index) => (
                     <Grid item key={index}>
                         <Box padding={3}>
-                            <Skeleton variant="rect" width={250} height={180}></Skeleton>
+                            <Skeleton variant="rect" width={225} height={180}></Skeleton>
                             <Skeleton width="70%" />
                         </Box>
                     </Grid>

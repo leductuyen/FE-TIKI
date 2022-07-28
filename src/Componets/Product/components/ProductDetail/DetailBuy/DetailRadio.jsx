@@ -6,6 +6,9 @@ import FormControl from '@material-ui/core/FormControl';
 import Styles from './DetailBuy.module.scss';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import { useEffect } from 'react';
+import addressApi from '../../../../../api/address';
+import { useState } from 'react';
 
 const currencies = [
     {
@@ -40,16 +43,26 @@ export default function DetailRadio() {
         setValue(event.target.value);
         console.log('value', value);
     };
-    const [currency, setCurrency] = React.useState('');
 
     const handleTextFieldChange = (event) => {
-        setCurrency(event.target.value);
         console.log('textfield', event.target.value);
     };
+    const [addRess, setAddRess] = useState([]);
+    console.log('address', addRess);
+    useEffect(() => {
+        (async () => {
+            try {
+                const data = await addressApi.getAll();
+                setAddRess(data);
+            } catch (error) {
+                console.log('Field address', error);
+            }
+        })();
+    }, []);
     return (
         <FormControl>
             <RadioGroup value={value} onChange={handleChange}>
-                <FormControlLabel value="selection" control={<Radio />} label="Đại MỖ, Nam Từ Liêm, HN" />
+                <FormControlLabel value="selection" control={<Radio />} label="Đại Mỗ, Nam Từ Liêm, HN" />
                 <FormControlLabel value="address" control={<Radio />} label="Chọn khu vực giao hàng khác " />
                 {value === 'address' && (
                     <div className={Styles.LocaltionModal}>
@@ -62,69 +75,14 @@ export default function DetailRadio() {
                                             id="outlined-select-currency-native"
                                             select
                                             label="Tỉnh/Thành Phố"
-                                            value={currency}
                                             onChange={handleTextFieldChange}
                                             SelectProps={{
                                                 native: true,
                                             }}
                                             variant="outlined"
                                         >
-                                            {currencies.map((option) => (
-                                                <option key={option.value} value={option.value}>
-                                                    {option.label}
-                                                </option>
-                                            ))}
-                                        </TextField>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div className={Styles.Row}>
-                            <p className={Styles.LocalType}>Quận/Huyện</p>
-                            <div className={Styles.LocalContainer}>
-                                <form className={classes.root}>
-                                    <div>
-                                        <TextField
-                                            id="outlined-select-currency-native"
-                                            select
-                                            label="Quận/Huyện"
-                                            value={currency}
-                                            onChange={handleTextFieldChange}
-                                            SelectProps={{
-                                                native: true,
-                                            }}
-                                            variant="outlined"
-                                        >
-                                            {currencies.map((option) => (
-                                                <option key={option.value} value={option.value}>
-                                                    {option.label}
-                                                </option>
-                                            ))}
-                                        </TextField>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div className={Styles.Row}>
-                            <p className={Styles.LocalType}>Phường/Xã</p>
-                            <div className={Styles.LocalContainer}>
-                                <form className={classes.root}>
-                                    <div>
-                                        <TextField
-                                            id="outlined-select-currency-native"
-                                            select
-                                            label="Phường/Xã"
-                                            value={currency}
-                                            onChange={handleTextFieldChange}
-                                            SelectProps={{
-                                                native: true,
-                                            }}
-                                            variant="outlined"
-                                        >
-                                            {currencies.map((option) => (
-                                                <option key={option.value} value={option.value}>
-                                                    {option.label}
-                                                </option>
+                                            {addRess.Provinces?.map((option) => (
+                                                <option key={option.ProvinceId}>{option.NameProvince}</option>
                                             ))}
                                         </TextField>
                                     </div>

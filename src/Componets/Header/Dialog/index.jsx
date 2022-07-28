@@ -6,7 +6,6 @@ import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import RecoverPassWord from '../RecoverPassWord';
-import Login from '../Login';
 
 const useStyles = makeStyles((theme) => ({
     Main: {
@@ -106,8 +105,8 @@ export default function DialogLogin() {
                     Đăng nhập/Đăng kí
                 </Button>
                 <Dialog open={open}>
-                    <Login />
-                    {/* <Box className={classes.Main}>
+                    {/* <Login /> */}
+                    <Box className={classes.Main}>
                         <CloseIcon className={classes.CloseIcon} onClick={handleClose} />
                         <Box className={classes.Left}>
                             <Box className={classes.LeftStyles}>
@@ -141,7 +140,7 @@ export default function DialogLogin() {
                                 <Typography className={classes.p}>Siêu ưu đãi mỗi ngày</Typography>
                             </Box>
                         </Box>
-                    </Box> */}
+                    </Box>
                 </Dialog>
             </Box>
         </div>

@@ -4,6 +4,9 @@ import AddToCart from '../AddToCart';
 import DeliveryAddress from './DeliveryAddress';
 
 function DetailBuy(props) {
+    const handleAddToCart = (formValues) => {
+        console.log('addToCart', formValues);
+    };
     return (
         <div className={Styles.DiscountCode}>
             <div className={Styles.Text}>9 mã giảm giá</div>
@@ -45,7 +48,7 @@ function DetailBuy(props) {
                 </div>
             </div>
 
-            <AddToCart />
+            <AddToCart onSubmit={handleAddToCart} />
         </div>
     );
 }

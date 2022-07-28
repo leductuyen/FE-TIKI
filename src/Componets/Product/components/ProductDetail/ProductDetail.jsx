@@ -6,16 +6,11 @@ import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 import { useRouteMatch } from 'react-router-dom';
 import detailApi from '../../../../api/detail';
 
-ProductDetail.propTypes = {
-    product: PropTypes.object,
-};
 function ProductDetail() {
     const [detailItems, setDetailItems] = useState([]);
-    console.log('detail', detailItems.detail?.product);
     const {
         params: { deatailId },
     } = useRouteMatch();

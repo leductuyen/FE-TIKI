@@ -48,6 +48,9 @@
     display: flex;
     box-shadow: rgb(98 98 98 / 50%) 0px 1px 2px 0px;
 }
+.Search input:focus {
+    outline: none;
+}
 .Input {
     border: 0px;
     padding: 0px 12px;
@@ -56,6 +59,7 @@
     flex: 1 1 0%;
     outline: none;
 }
+
 .Button {
     cursor: pointer;
     border: 0px;
